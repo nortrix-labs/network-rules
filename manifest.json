@@ -1,0 +1,40 @@
+{
+  "built_at": "2026-11-17T18:21:09.739542+00:00",
+  "builder_revision": "a0922175db8ba51702c82c8afb8b915b74bc8faa",
+  "domain_count": 276372,
+  "sources": {
+    "hagezi-pro": {
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro-onlydomains.txt",
+      "sha256": "043d36c253d447ed81e0e3f281e5558c1ae8abf2de7d9602a8d7c935b443ef7c",
+      "domain_count": 242263
+    },
+    "anti-ad": {
+      "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt",
+      "sha256": "5ba7c09db31c4c0a41b3a5718669f728d712767d962b8bf4a54f78df914f857b",
+      "domain_count": 101832
+    }
+  },
+  "protected_namespaces": [
+    "anthropic.auth0.com",
+    "anthropic.com",
+    "chatgpt.com",
+    "claude.ai",
+    "claude.com",
+    "claudemcpclient.com",
+    "claudemcpcontent.com",
+    "claudeusercontent.com",
+    "cloudflare-dns.com",
+    "controld.com",
+    "dns.google",
+    "oaistatic.com",
+    "oaiusercontent.com",
+    "one.one.one.one",
+    "openai.com",
+    "raw.githubusercontent.com",
+    "tailscale.com",
+    "tailscale.io",
+    "ts.net",
+    "www.apple.com"
+  ],
+  "feed_sha256": "4800187317cf2673e104cdea602df59a84e2870b8ec13356653804597a5f6076"
+}
