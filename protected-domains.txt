@@ -1,0 +1,21 @@
+# Public service namespaces only. These exceptions do not choose a proxy route.
+anthropic.com
+claude.ai
+claude.com
+claudeusercontent.com
+claudemcpcontent.com
+claudemcpclient.com
+anthropic.auth0.com
+openai.com
+chatgpt.com
+oaistatic.com
+oaiusercontent.com
+raw.githubusercontent.com
+cloudflare-dns.com
+one.one.one.one
+dns.google
+tailscale.com
+tailscale.io
+ts.net
+controld.com
+www.apple.com
