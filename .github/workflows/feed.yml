@@ -1,0 +1,61 @@
+name: Ad-block feed
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 12 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ad-feed-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest -v
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Fetch previous manifest when a feed exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$(git ls-remote --heads origin feed)" ]; then
+            git fetch --depth=1 origin feed
+            git show FETCH_HEAD:manifest.json > "$RUNNER_TEMP/previous.json"
+          fi
+      - name: Build and validate before changing published branch
+        run: python3 build.py --output "$RUNNER_TEMP/ad-feed" --previous "$RUNNER_TEMP/previous.json"
+      - name: Publish only generated public domain data
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "$RUNNER_TEMP/previous.json" ]; then
+            git switch -C feed FETCH_HEAD
+          else
+            git switch --orphan feed
+          fi
+          cp "$RUNNER_TEMP/ad-feed/ads.list" .
+          cp "$RUNNER_TEMP/ad-feed/manifest.json" .
+          cp "$RUNNER_TEMP/ad-feed/LICENSE" .
+          cp "$RUNNER_TEMP/ad-feed/SOURCES.md" .
+          mkdir -p licenses
+          cp "$RUNNER_TEMP/ad-feed/licenses/anti-AD-MIT.txt" licenses/
+          git add ads.list manifest.json LICENSE SOURCES.md licenses/anti-AD-MIT.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(feed): refresh validated ad domains'
+          git push origin HEAD:feed
