@@ -1,12 +1,12 @@
 {
-  "built_at": "2026-11-21T19:28:10.818149+00:00",
+  "built_at": "2026-11-22T19:49:58.933600+00:00",
   "builder_revision": "a0922175db8ba51702c82c8afb8b915b74bc8faa",
-  "domain_count": 277574,
+  "domain_count": 275327,
   "sources": {
     "hagezi-pro": {
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro-onlydomains.txt",
-      "sha256": "409cd5dbfbdffff2a27432caa36729bee5c4abd4be8c70b4f55344fc974997af",
-      "domain_count": 244976
+      "sha256": "1cf32c0a4e6b4b45c543e0690d95dd68bb3027cb7feca2549ed1f9bccc68625e",
+      "domain_count": 242058
     },
     "anti-ad": {
       "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt",
@@ -36,5 +36,5 @@
     "ts.net",
     "www.apple.com"
   ],
-  "feed_sha256": "80ae595b1e3e4aed997605dcaddfdf364656ba494bfbc2c43ab2dc4255ec53c3"
+  "feed_sha256": "0f0f19210cd2add08b2491ce50525d12271a423b5f3306a955d32ccded590be3"
 }
